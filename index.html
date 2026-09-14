@@ -241,6 +241,21 @@ mark{background:#fff3cd;border-radius:2px;padding:0 1px}
 .pec-modal-save{background:var(--green);border:none;color:#fff}
 .pec-modal-cancel{background:var(--bg);border:1px solid var(--border);color:var(--text)}
 .pec-modal-reset{background:var(--tag-warn-bg);border:1px solid var(--tag-warn);color:var(--tag-warn)}
+.motif-modal{max-width:560px;max-height:88vh;overflow-y:auto}
+.motif-field{margin-bottom:.7rem}
+.motif-field label{display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.motif-field input[type=text],.motif-field select,.motif-field textarea{width:100%;box-sizing:border-box;font-size:12.5px;padding:.5rem;border:1px solid var(--border);border-radius:5px;background:var(--bg);color:var(--text);font-family:inherit;line-height:1.5}
+.motif-field textarea{resize:vertical;min-height:70px}
+.motif-field textarea.tall{min-height:110px}
+.motif-chk-group{display:flex;gap:.5rem;flex-wrap:wrap}
+.motif-chk{display:flex;align-items:center;gap:5px;font-size:12px;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:4px 10px;cursor:pointer;user-select:none}
+.motif-chk input{margin:0;cursor:pointer}
+.motif-hint{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+.btn-add-motif{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;font-size:12.5px;font-weight:700;color:#fff;background:var(--green);border:none;border-radius:7px;cursor:pointer;margin-bottom:.85rem}
+.btn-add-motif:hover{opacity:.9}
+.motif-custom-tag{font-size:9.5px;padding:2px 8px;border-radius:20px;background:var(--tag-new-bg);color:var(--tag-new);font-weight:700}
+.motif-del-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;font-size:11.5px;font-weight:600;color:var(--tag-noj);background:var(--tag-noj-bg);border:1px solid #e57373;border-radius:6px;cursor:pointer}
+.motif-del-btn:hover{background:var(--tag-noj);color:#fff}
 @media(max-width:700px){.pec-table .pec-info,.pec-table .pec-addr{display:none}}
 /* ── Top Débiteur ── */
 .topdeb-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1rem}
@@ -398,6 +413,7 @@ footer{padding:0;margin-top:2rem}
       <strong style="color:var(--tag-warn)">&#128161; Premier guide — en cours d&rsquo;enrichissement</strong><br>
       Les motifs de rejet r&eacute;pertori&eacute;s ici sont issus de <strong>statistiques collect&eacute;es par 4AXES</strong> aupr&egrave;s des &eacute;tablissements. Ils constituent une aide &agrave; l&rsquo;analyse, pas une marche &agrave; suivre certifi&eacute;e. Les actions correctives indiqu&eacute;es sont des pistes fr&eacute;quemment efficaces, mais chaque situation peut varier. Ce r&eacute;f&eacute;rentiel sera <strong>enrichi r&eacute;guli&egrave;rement</strong> au fil des nouveaux rejets identifi&eacute;s et des retours des &eacute;tablissements.
     </div>
+    <button class="btn-add-motif" onclick="openMotifAdd('drecp')">&#10011; Proposer un motif</button>
     <div class="search-wrap">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" id="q" placeholder="Rechercher un motif, un code, une AMC&#8230;" oninput="render()" autocomplete="off">
@@ -457,6 +473,7 @@ footer{padding:0;margin-top:2rem}
       <strong style="color:var(--tag-warn)">&#128161; Premier guide — en cours d&rsquo;enrichissement</strong><br>
       Les motifs de rejet r&eacute;pertori&eacute;s ici sont issus de <strong>statistiques collect&eacute;es par 4AXES</strong> aupr&egrave;s des &eacute;tablissements. Ils constituent une aide &agrave; l&rsquo;analyse, pas une marche &agrave; suivre certifi&eacute;e. Les actions correctives indiqu&eacute;es sont des pistes fr&eacute;quemment efficaces, mais chaque situation peut varier. Ce r&eacute;f&eacute;rentiel sera <strong>enrichi r&eacute;guli&egrave;rement</strong> au fil des nouveaux rejets identifi&eacute;s et des retours des &eacute;tablissements.
     </div>
+    <button class="btn-add-motif" onclick="openMotifAdd('615')">&#10011; Proposer un motif</button>
     <div class="search-wrap">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <input type="text" id="q615r" placeholder="Rechercher un motif de rejet&#8230;" oninput="render615Rejets()" autocomplete="off">
@@ -501,12 +518,47 @@ footer{padding:0;margin-top:2rem}
 <!-- ════ DRE-CP PUBLIC ════ -->
 <div id="screen-drepub" class="section-hidden">
 <div class="container">
-  <div class="search-wrap">
-    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="q-drepub" placeholder="Rechercher un op&#233;rateur, une mutuelle&#8230;" oninput="renderDrecpPub()" autocomplete="off">
+  <div class="drecp-tabs">
+    <span class="drecp-tab" id="tab-pub-rejets" onclick="switchTabDrepub('rejets')">&#128203; Rejets AMC</span>
+    <span class="drecp-tab active" id="tab-pub-tele" onclick="switchTabDrepub('tele')">&#128225; Codes t&#233;l&#233;transmission</span>
   </div>
-  <p class="count" id="count-drepub"></p>
-  <div id="results-drepub" class="oper-grid"></div>
+
+  <!-- Panel : Rejets AMC (DRE-CP Public) -->
+  <div class="drecp-panel" id="panel-pub-rejets">
+    <div style="background:var(--tag-warn-bg);border:1px solid var(--tag-warn);border-radius:8px;padding:.65rem 1rem;margin-bottom:.9rem;font-size:12px;color:var(--text);line-height:1.55">
+      <strong style="color:var(--tag-warn)">&#128161; R&eacute;f&eacute;rentiel en cours de constitution</strong><br>
+      Aucun motif n'est encore r&eacute;pertori&eacute; pour la norme DRE-CP Public. Utilisez le bouton ci-dessous pour proposer les premiers motifs identifi&eacute;s sur le terrain.
+    </div>
+    <button class="btn-add-motif" onclick="openMotifAdd('drepub')">&#10011; Proposer un motif</button>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="q-pubr" placeholder="Rechercher un motif de rejet&#8230;" oninput="renderDrepubRejets()" autocomplete="off">
+    </div>
+    <div class="filter-group">
+      <div class="filter-label">Cat&#233;gorie</div>
+      <div class="filters">
+        <span class="pill active" id="pubcat-all"     onclick="sfPub('cat','all')">Toutes</span>
+        <span class="pill"        id="pubcat-droits"  onclick="sfPub('cat','droits')">Droits / B&#233;n&#233;ficiaire</span>
+        <span class="pill"        id="pubcat-conform" onclick="sfPub('cat','conform')">Conformit&#233; facturation</span>
+        <span class="pill"        id="pubcat-montant" onclick="sfPub('cat','montant')">Montants</span>
+        <span class="pill"        id="pubcat-doublon" onclick="sfPub('cat','doublon')">Doublons</span>
+        <span class="pill"        id="pubcat-circuit" onclick="sfPub('cat','circuit')">Circuit TP</span>
+        <span class="pill"        id="pubcat-code"    onclick="sfPub('cat','code')">Codes sp&#233;cifiques</span>
+      </div>
+    </div>
+    <p class="count" id="count-pubr"></p>
+    <div id="results-pubr"></div>
+  </div>
+
+  <!-- Panel : Codes télétransmission (existant) -->
+  <div class="drecp-panel active" id="panel-pub-tele">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="q-drepub" placeholder="Rechercher un op&#233;rateur, une mutuelle&#8230;" oninput="renderDrecpPub()" autocomplete="off">
+    </div>
+    <p class="count" id="count-drepub"></p>
+    <div id="results-drepub" class="oper-grid"></div>
+  </div>
 </div>
 </div>
 
@@ -581,6 +633,59 @@ footer{padding:0;margin-top:2rem}
     </div>
   </div>
 </div>
+
+<div class="pec-modal-bg" id="motif-modal-bg" onclick="closeMotifAdd()">
+  <div class="pec-modal motif-modal" onclick="event.stopPropagation()">
+    <h3 id="motif-modal-title">&#10011; Proposer un motif de rejet</h3>
+    <div class="pec-modal-sub">Votre proposition sera envoy&eacute;e par e-mail &agrave; l'&eacute;quipe 4AXES pour v&eacute;rification. Elle ne sera ajout&eacute;e au r&eacute;f&eacute;rentiel public qu'apr&egrave;s validation.</div>
+
+    <div class="motif-field">
+      <label>Libell&eacute; du motif *</label>
+      <input type="text" id="mf-l" placeholder="Ex&nbsp;: DROITS FERMES">
+    </div>
+
+    <div class="motif-field">
+      <label>Cat&eacute;gorie</label>
+      <select id="mf-cat">
+        <option value="droits">Droits / B&eacute;n&eacute;ficiaire</option>
+        <option value="conform">Conformit&eacute; facturation</option>
+        <option value="montant">Montants</option>
+        <option value="doublon">Doublons</option>
+        <option value="circuit">Circuit TP</option>
+        <option value="donnee">Donn&eacute;es incorrectes</option>
+        <option value="code">Codes sp&eacute;cifiques</option>
+      </select>
+    </div>
+
+    <div class="motif-field">
+      <label>Concentrateur(s) / AMC concern&eacute;(s)</label>
+      <div class="motif-chk-group" id="mf-amc-group">
+        <label class="motif-chk"><input type="checkbox" value="almerys">Almerys</label>
+        <label class="motif-chk"><input type="checkbox" value="isante">iSant&eacute;</label>
+        <label class="motif-chk"><input type="checkbox" value="viamedis">Viamedis</label>
+        <label class="motif-chk"><input type="checkbox" value="sp">SP Sant&eacute;</label>
+        <label class="motif-chk"><input type="checkbox" value="actil">ACTIL</label>
+        <label class="motif-chk"><input type="checkbox" value="mut">Mutuelles directes</label>
+      </div>
+    </div>
+
+    <div class="motif-field">
+      <label>Description</label>
+      <textarea id="mf-d" placeholder="Expliquez la cause du rejet&#8230;"></textarea>
+    </div>
+
+    <div class="motif-field">
+      <label>Action corrective</label>
+      <textarea class="tall" id="mf-a" placeholder="Une action par ligne, ex&#8230;&#10;1. V&eacute;rifier ...&#10;2. Corriger ...&#10;3. Retransmettre"></textarea>
+      <div class="motif-hint">Astuce&nbsp;: une ligne = une &eacute;tape, elles s'afficheront dans l'ordre.</div>
+    </div>
+
+    <div class="pec-modal-btns">
+      <button class="pec-modal-cancel" onclick="closeMotifAdd()">Annuler</button>
+      <button class="pec-modal-save" onclick="saveMotif()">Envoyer la proposition</button>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 <div class="pec-toast" id="pec-toast">&#10003; SIRET copi&eacute; !</div>
@@ -649,8 +754,8 @@ function showNorm(n){
     renderPEC();
   } else if(n==="drepub"){
     document.getElementById("screen-drepub").classList.remove("section-hidden");
-    badge.textContent="DRE-CP Public";sub.textContent="Codes de télétransmission — établissements publics";
-    renderDrecpPub();
+    badge.textContent="DRE-CP Public";sub.textContent="Motifs de rejet & codes de télétransmission — établissements publics";
+    switchTabDrepub("tele");
   }
 }
 function openPecShortcut(){
@@ -763,6 +868,116 @@ document.addEventListener("click",function(e){
   if(popOpen&&!e.target.closest(".contact-btn")){popOpen.classList.remove("open");popOpen=null;}
 });
 
+/* ── Proposition de motifs par e-mail (modération, 3 normes) ── */
+var AMCL_LABELS={almerys:"Almerys",isante:"iSanté",viamedis:"Viamedis",sp:"SP Santé",actil:"ACTIL",mut:"Mutuelles directes"};
+var NORM_LABELS={drecp:"DRE-CP Privé",'615':"615 MEH",drepub:"DRE-CP Public"};
+var CAT_SETS={
+  drecp:[["droits","Droits / Bénéficiaire"],["conform","Conformité facturation"],["montant","Montants"],["doublon","Doublons"],["circuit","Circuit TP"],["donnee","Données incorrectes"],["code","Codes spécifiques"]],
+  '615':[["droits","Droits / Bénéficiaire"],["pec","PEC"],["doublon","Doublon"],["montant","Montants"],["code","Codes / Actes"],["circuit","Circuit TP"]],
+  drepub:[["droits","Droits / Bénéficiaire"],["conform","Conformité facturation"],["montant","Montants"],["doublon","Doublons"],["circuit","Circuit TP"],["code","Codes spécifiques"]]
+};
+var AMC_SETS={
+  drecp:[["almerys","Almerys"],["isante","iSanté"],["viamedis","Viamedis"],["sp","SP Santé"],["actil","ACTIL"],["mut","Mutuelles directes"]],
+  '615':[["viamedis","Viamedis"],["isante","iSanté"],["almerys","Almerys"]],
+  drepub:[["almerys","Almerys"],["isante","iSanté"],["viamedis","Viamedis"]]
+};
+var _motifNorm="drecp";
+function openMotifAdd(norm){
+  _motifNorm=norm||"drecp";
+  document.getElementById('mf-l').value='';
+  document.getElementById('mf-d').value='';
+  document.getElementById('mf-a').value='';
+  document.getElementById('motif-modal-title').textContent="✱ Proposer un motif — "+NORM_LABELS[_motifNorm];
+  var catSel=document.getElementById('mf-cat');
+  catSel.innerHTML='';
+  CAT_SETS[_motifNorm].forEach(function(c){
+    var opt=document.createElement('option');opt.value=c[0];opt.textContent=c[1];catSel.appendChild(opt);
+  });
+  var amcGroup=document.getElementById('mf-amc-group');
+  amcGroup.innerHTML='';
+  AMC_SETS[_motifNorm].forEach(function(a){
+    var lab=document.createElement('label');lab.className='motif-chk';
+    lab.innerHTML='<input type="checkbox" value="'+a[0]+'">'+a[1];
+    amcGroup.appendChild(lab);
+  });
+  document.getElementById('motif-modal-bg').style.display='block';
+  setTimeout(function(){document.getElementById('mf-l').focus();},60);
+}
+function closeMotifAdd(){document.getElementById('motif-modal-bg').style.display='none';}
+function saveMotif(){
+  var l=document.getElementById('mf-l').value.trim();
+  if(!l){alert('Merci de renseigner un libellé pour le motif.');return;}
+  var cat=document.getElementById('mf-cat').value;
+  var catLabel=cat;
+  CAT_SETS[_motifNorm].forEach(function(c){if(c[0]===cat)catLabel=c[1];});
+  var d=document.getElementById('mf-d').value.trim();
+  var a=document.getElementById('mf-a').value.trim();
+  var boxes=document.querySelectorAll('#mf-amc-group input[type=checkbox]:checked');
+  var amcl=[];
+  for(var i=0;i<boxes.length;i++)amcl.push(boxes[i].parentElement.textContent.trim());
+  var sujet=encodeURIComponent("Proposition de motif de rejet ["+NORM_LABELS[_motifNorm]+"] — "+l);
+  var corps=encodeURIComponent(
+    "Bonjour,\n\nVoici une proposition de motif de rejet à vérifier avant publication dans AMC Pilote :\n\n"+
+    "Norme : "+NORM_LABELS[_motifNorm]+"\n"+
+    "Libellé : "+l+"\n"+
+    "Catégorie : "+catLabel+"\n"+
+    "Concentrateur(s) / AMC : "+(amcl.length?amcl.join(", "):"non précisé")+"\n"+
+    "Description : "+(d||"non précisée")+"\n"+
+    "Action corrective proposée :\n"+(a||"non précisée")+"\n\n"+
+    "Envoyé depuis l'outil AMC Pilote."
+  );
+  window.location.href="mailto:caroline.allard@4axes.fr?subject="+sujet+"&body="+corps;
+  closeMotifAdd();
+  var toast=document.getElementById('pec-toast');
+  toast.textContent="✓ Votre messagerie va s'ouvrir pour envoyer la proposition";
+  toast.classList.add('show');
+  setTimeout(function(){toast.classList.remove('show');toast.textContent="✓ SIRET copié !";},2600);
+}
+
+/* ── Rejets DRE-CP Public (référentiel à constituer) ── */
+var REJDREPUB=[];
+var FPUB={cat:"all"};
+function sfPub(g,v){
+  FPUB[g]=v;
+  var els=document.querySelectorAll(".pill");
+  for(var i=0;i<els.length;i++){var id=els[i].id;if(id&&id.indexOf("pub"+g+"-")===0){els[i].className=id===("pub"+g+"-"+v)?"pill active":"pill";}}
+  renderDrepubRejets();
+}
+function renderDrepubRejets(){
+  var q=(document.getElementById("q-pubr").value||"").trim().toLowerCase();
+  var items=[];
+  for(var i=0;i<REJDREPUB.length;i++){
+    var d=REJDREPUB[i];
+    if(FPUB.cat!=="all"&&d.cat!==FPUB.cat)continue;
+    if(q){var h=(d.l+d.d+d.a+(d.amcl||[]).join(" ")).toLowerCase();if(h.indexOf(q)<0)continue;}
+    items.push(d);
+  }
+  document.getElementById('count-pubr').textContent=items.length+' motif'+(items.length!==1?'s':'')+' trouv'+(items.length!==1?'és':'é');
+  if(!items.length){document.getElementById('results-pubr').innerHTML="<div class='empty'>Aucun motif r&eacute;pertori&eacute; pour l'instant &mdash; utilisez le bouton &laquo; Proposer un motif &raquo; ci-dessus.</div>";return;}
+  var CLPUB={droits:"Droits / Bénéficiaire",conform:"Conformité facturation",montant:"Montants",doublon:"Doublons",circuit:"Circuit TP",code:"Codes spécifiques"};
+  var CCPUB={droits:"cat-droits",conform:"cat-conform",montant:"cat-montant",doublon:"cat-doublon",circuit:"cat-circuit",code:"cat-code"};
+  var html="";
+  for(var i=0;i<items.length;i++){
+    var d=items[i];
+    var tags="";
+    (d.amcl||[]).forEach(function(t){tags+="<span class='amc-pill'>"+t+"</span>";});
+    html+="<div class='card'>"
+      +"<div class='libelle'>"+d.l+"</div>"
+      +"<div class='badges'><span class='cat-pill "+CCPUB[d.cat]+"'>"+CLPUB[d.cat]+"</span>"+tags+"</div>"
+      +(d.d?"<p class='desc'>"+d.d+"</p>":"")
+      +(d.a?"<div class='action-block'><p class='action-label'>&#10003; Action corrective</p><p class='action-text'>"+d.a.replace(/\n/g,"<br>")+"</p></div>":"")
+      +"</div>";
+  }
+  document.getElementById('results-pubr').innerHTML=html;
+}
+function switchTabDrepub(tab){
+  document.getElementById("tab-pub-rejets").classList.toggle("active",tab==="rejets");
+  document.getElementById("tab-pub-tele").classList.toggle("active",tab==="tele");
+  document.getElementById("panel-pub-rejets").classList.toggle("active",tab==="rejets");
+  document.getElementById("panel-pub-tele").classList.toggle("active",tab==="tele");
+  if(tab==="tele")renderDrecpPub();else renderDrepubRejets();
+}
+
 function render(){
   var q=document.getElementById("q").value.trim().toLowerCase();
   var items=[];
@@ -788,9 +1003,9 @@ function render(){
     html+="<div class='card'>"
       +"<div class='libelle'>"+hl(d.l,q)+"</div>"
       +"<div class='badges'><span class='cat-pill "+CC[d.cat]+"'>"+CL[d.cat]+"</span>"+tags+"</div>"
-      +"<p class='desc'>"+hl(d.d,q)+"</p>"
-      +"<div class='action-block'><p class='action-label'>&#10003; Action corrective</p>"
-      +"<p class='action-text'>"+hl(d.a.replace(/\n/g,"<br>"),q)+"</p></div>"
+      +(d.d?"<p class='desc'>"+hl(d.d,q)+"</p>":"")
+      +(d.a?"<div class='action-block'><p class='action-label'>&#10003; Action corrective</p>"
+      +"<p class='action-text'>"+hl(d.a.replace(/\n/g,"<br>"),q)+"</p></div>":"")
       +"<div class='card-btns'>"
       +"<a class='mail-btn' href='"+mailto+"'>&#9993; Contacter 4AXES</a>"
       +(contactHtml?"<div style='position:relative'><button class='contact-btn' onclick='togglePop(\""+popId+"\")'>&#128222; Contact op&eacute;rateur &#9660;</button>"+contactHtml+"</div>":"")
