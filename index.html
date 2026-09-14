@@ -222,6 +222,14 @@ mark{background:#fff3cd;border-radius:2px;padding:0 1px}
 .pec-table colgroup col:nth-child(2){width:26%}
 .pec-table colgroup col:nth-child(3){width:13%}
 .pec-table colgroup col:nth-child(4){width:33%}
+.pec-tele-cell{display:flex;flex-direction:column;gap:3px;max-width:100%}
+.pec-tele-norm{display:flex;flex-wrap:wrap;align-items:center;gap:3px;font-size:10px;line-height:1.4}
+.pec-tele-norm .pn-label{font-weight:700;min-width:32px;color:var(--muted);flex-shrink:0}
+.pec-tele-ok{color:var(--green);font-weight:700}
+.pec-tele-no{color:var(--tag-noj);opacity:.6}
+.pec-tele-unknown{color:var(--muted);font-style:italic;font-size:10px}
+.pec-tele-multi{color:var(--tag-warn);font-weight:700;font-size:10px}
+.pec-tele-via{color:var(--blue);font-style:italic}
 .pec-table th{background:var(--bg);font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:6px 8px;text-align:left;border-bottom:2px solid var(--border);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pec-table td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle;overflow:hidden;word-break:break-word}
 .pec-table tr:last-child td{border-bottom:none}
@@ -1358,7 +1366,7 @@ var OPERS=[
   {n:"UNIASSUR",a:"OUI",s:"NON",c:""},
   {n:"VIASANTE (ex MUTUELLE BLEUE)",a:"OUI",s:"OUI",c:""},
   {n:"VILAVI",a:"OUI",s:"OUI",c:""},
-  {n:"VERSPIEREN",a:"OUI",s:"NON",c:""},
+  {n:"VERSPIEREN",a:"OUI",s:"OUI",c:""},
   {n:"WAKAM",a:"OUI",s:"OUI",c:""},
   {n:"YVELIN",a:"OUI",s:"NON",c:""}
  ]},
@@ -1640,7 +1648,106 @@ function getOperMuts(nom){
 }
 var DRECP_OPERS=[
   {nom:"ALMERYS",tele:"98 53 20 01",ace:"OUI",sejour:"OUI",comment:"",
-   muts:getOperMuts("ALMERYS")},
+   muts:[
+    {n:"ADEP",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/11/2025"},
+    {n:"ADREA MUTUELLE – Alpes Dauphiné (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Auvergne (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Bourgogne (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Franche-Comté (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Languedoc-Roussillon/PACA (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Normandie/Pays de Loire/Bretagne (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Pays de l'Ain (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Pays de Savoie (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"AESIO ex ADREA – Centre de Gestion Paris",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"AG2RLM VIASANTE",a:"OUI",s:"OUI",c:""},
+    {n:"ALAN",a:"OUI",s:"OUI",c:""},
+    {n:"AMPLI",a:"OUI",s:"OUI",c:""},
+    {n:"APRIL INTERNATIONAL",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"AREA CONSEIL",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025"},
+    {n:"ASCOMA",a:"OUI",s:"NON",c:""},
+    {n:"ASRAMA GESTION (ENTRAIN PARTIEL / AMELLIS)",a:"OUI",s:"OUI",c:""},
+    {n:"CAMIEG (SANERGI IEG, SOLIMUT CSMR, ROEDERER SIMAX)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"CEGEMA ASSURANCE",a:"OUI",s:"OUI",c:"Attention : à partir du 01/07/2023 SE, à partir du 01/01/2024 séjours, à partir du 01/01/2025 → ISANTE"},
+    {n:"CERGAP GESTION",a:"OUI",s:"OUI",c:""},
+    {n:"CIGNA",a:"OUI",s:"OUI",c:""},
+    {n:"CIPRES ASSURANCES",a:"OUI",s:"NON",c:""},
+    {n:"COLLECTEAM",a:"OUI",s:"OUI",c:""},
+    {n:"COMPLEVIE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"CPAMIF",a:"OUI",s:"OUI",c:""},
+    {n:"CPMS",a:"OUI",s:"OUI",c:""},
+    {n:"CSC",a:"OUI",s:"NON",c:""},
+    {n:"ECA",a:"OUI",s:"OUI",c:""},
+    {n:"GENERALI",a:"OUI",s:"OUI",c:""},
+    {n:"GESTINEO",a:"OUI",s:"NON",c:""},
+    {n:"GFP HUMEN",a:"OUI",s:"NON",c:""},
+    {n:"GIE GROUPE NATION (PREMAGEST)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"GIE IS",a:"OUI",s:"OUI",c:""},
+    {n:"GRAS SAVOYE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025"},
+    {n:"GROUPE AESIO ex EOVI MCD TIERS PAYANT",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"GROUPE FRANCE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"GSA_SI",a:"OUI",s:"OUI",c:""},
+    {n:"HEMOS",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025"},
+    {n:"HOLDING PESENTI",a:"OUI",s:"OUI",c:""},
+    {n:"IGA GESTION",a:"OUI",s:"NON",c:""},
+    {n:"INTERIALE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"IRP AUTO – Mutuelle des professions de l'automobile",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"JP COLONNA",a:"OUI",s:"NON",c:""},
+    {n:"LA FRONTALIERE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"LA MEDICALE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2025"},
+    {n:"LA MUTUELLE DES MEDECINS",a:"OUI",s:"OUI",c:""},
+    {n:"LAMIE FRANCE",a:"OUI",s:"OUI",c:""},
+    {n:"LES ASSURANCES MEDICALES",a:"OUI",s:"OUI",c:""},
+    {n:"LES MENAGES PREVOYANTS (LMP)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"LMG",a:"OUI",s:"OUI",c:""},
+    {n:"LSN ASSURANCES",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"LUCIE TECH (JAJI)",a:"OUI",s:"OUI",c:""},
+    {n:"LUXIOR",a:"OUI",s:"OUI",c:""},
+    {n:"MACIF APIVIA",a:"OUI",s:"OUI",c:""},
+    {n:"MACIF BPCEA",a:"OUI",s:"OUI",c:""},
+    {n:"MACIF MMS",a:"OUI",s:"OUI",c:""},
+    {n:"MAGE – Mutuelle Autonome Générale Education",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/02/2024"},
+    {n:"MUTUELLE CHEMINOTS DU NORD (MCN)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MUTUELLE COMPLEMENTAIRE D'ALSACE (MCA)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MBA MUTUELLE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MCEN",a:"OUI",s:"OUI",c:""},
+    {n:"MCF",a:"OUI",s:"OUI",c:""},
+    {n:"MFTGS",a:"OUI",s:"OUI",c:""},
+    {n:"MGAS",a:"OUI",s:"OUI",c:""},
+    {n:"MGEFI",a:"OUI",s:"OUI",c:""},
+    {n:"MGP POLICE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DE L'INDUSTRIE DU PETROLE (MIP)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"MMH",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2025"},
+    {n:"MMJ",a:"OUI",s:"OUI",c:""},
+    {n:"MUTAME",a:"OUI",s:"OUI",c:""},
+    {n:"MUTLOR",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MUTUALE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE APREVA (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE ENTRAIN",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE LE RALLIEMENT",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE LMDE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE SAINT AUBANNAISE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"NUOMA MUTUELLE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025 (voir MACIF APIVIA)"},
+    {n:"OWLIANCE CNP",a:"OUI",s:"NON",c:""},
+    {n:"OWLIANCE LBPAS",a:"OUI",s:"OUI",c:""},
+    {n:"OWLIANCE MME",a:"OUI",s:"OUI",c:""},
+    {n:"OWLIANCE PR MPCDC",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2024"},
+    {n:"OWLIANCE SURAVENIR",a:"OUI",s:"NON",c:""},
+    {n:"POP SANTE",a:"OUI",s:"OUI",c:""},
+    {n:"SAMBO",a:"OUI",s:"OUI",c:""},
+    {n:"SMATIS",a:"OUI",s:"OUI",c:""},
+    {n:"SMERRA",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/02/2024"},
+    {n:"SMH",a:"OUI",s:"OUI",c:"Nouveau : SE à partir du 01/09/2024, séjours à partir du 01/01/2025"},
+    {n:"SOGECAP",a:"OUI",s:"OUI",c:""},
+    {n:"SOLIDARITE MUTUALISTE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025 (voir MUTUALE)"},
+    {n:"SOLLY AZAR SANTE & VIE",a:"OUI",s:"OUI",c:""},
+    {n:"ST HONORE",a:"OUI",s:"OUI",c:""},
+    {n:"SUISSCOURTAGE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2024"},
+    {n:"UGIP ASSURANCES",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"VERSPIEREN CLIENT",a:"OUI",s:"NON",c:""},
+    {n:"VIASANTE",a:"OUI",s:"OUI",c:""},
+    {n:"REPAM",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/07/2023"},
+    {n:"MBTP",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/07/2023"}
+   ]},
   {nom:"CARTE BLANCHE TIERS PAYANT",tele:"98 53 22 03",ace:"VOIR DÉTAIL",sejour:"NON",
    comment:"⚠️ Fin d'activité au 01/01/2026 — remplacé par CARTE BLANCHE PARTENAIRE",
    muts:[{n:"SWISS LIFE",a:"OUI",s:"NON",c:"Jusqu'au 31/12/2025"}]},
@@ -1649,17 +1756,180 @@ var DRECP_OPERS=[
    muts:[{n:"SWISS LIFE",a:"OUI",s:"NON",c:"À partir du 01/01/2026"}]},
   {nom:"CCMO",tele:"78 05 08 073",ace:"OUI",sejour:"OUI",comment:"",muts:[]},
   {nom:"ISANTE",tele:"00 73 39 31",ace:"VOIR DÉTAIL",sejour:"OUI",comment:"",
-   muts:getOperMuts("ISANTE")},
+   muts:[
+    {n:"AGEO / SGSANTE",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/01/2023"},
+    {n:"TG ASSUR ex APRIA RSA LIMOGES",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"TG ASSUR ex APRIA RSA MONTPELLIER",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"TG ASSUR POOL ex APRIA RSA / AGA",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"TG ASSUR ex APRIA RSA / GESTION ACS",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ASSUREURS NUM IGESTION",a:"OUI",s:"OUI",c:""},
+    {n:"ABEILLE ASSURANCES",a:"OUI",s:"OUI",c:""},
+    {n:"AXA",a:"OUI",s:"NON",c:""},
+    {n:"AON",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 02/10/2023"},
+    {n:"BALOO",a:"OUI",s:"OUI",c:""},
+    {n:"BCAC",a:"OUI",s:"OUI",c:""},
+    {n:"CEGEMA",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2025"},
+    {n:"CGRM",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"COGEVIE",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/12/2024"},
+    {n:"COLLECTEAM",a:"OUI",s:"OUI",c:""},
+    {n:"ENTIS",a:"OUI",s:"OUI",c:""},
+    {n:"GESTASSUR",a:"OUI",s:"OUI",c:"Nouveau : frais de séjour à partir du 01/01/2026"},
+    {n:"GESTINEO",a:"OUI",s:"OUI",c:""},
+    {n:"GFA CARAIBES",a:"OUI",s:"OUI",c:""},
+    {n:"GFP – PLANSANTE",a:"OUI",s:"NON",c:""},
+    {n:"WTW France (ex Gras Savoye)",a:"OUI",s:"OUI",c:""},
+    {n:"HELIUM",a:"OUI",s:"OUI",c:""},
+    {n:"HARMONIE FONCTION PUBLIQUE",a:"OUI",s:"OUI",c:""},
+    {n:"IGESTION",a:"OUI",s:"OUI",c:""},
+    {n:"INTERIALE (vérifier carte)",a:"OUI",s:"NON",c:"Nouveau : pour les dates d'entrée à partir du 01/10/2025"},
+    {n:"IRCEM",a:"OUI",s:"OUI",c:""},
+    {n:"ISTYA COLLECTIVES",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025"},
+    {n:"JUST",a:"OUI",s:"OUI",c:""},
+    {n:"KLESIA CARCEPT / KLESIA BY LMF TECH",a:"OUI",s:"OUI",c:""},
+    {n:"LA BANQUE POSTALE PREVOYANCE",a:"OUI",s:"OUI",c:""},
+    {n:"MA MUTUELLE MGEN",a:"OUI",s:"OUI",c:""},
+    {n:"MCDEF",a:"OUI",s:"OUI",c:""},
+    {n:"MERCER",a:"OUI",s:"NON",c:""},
+    {n:"MHV",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MIPCF / PLEYEL SANTE",a:"OUI",s:"NON",c:""},
+    {n:"MMA COLLECTIVE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MMA ENTREPRISE",a:"OUI",s:"OUI",c:""},
+    {n:"MNH",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE NATIONALE DES SAPEURS POMPIERS (MNSP)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MPI",a:"OUI",s:"NON",c:""},
+    {n:"MSG",a:"OUI",s:"OUI",c:""},
+    {n:"MTH",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/01/2023"},
+    {n:"MUTUELLE BAGNEAUX",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DASSAULT",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DE POITIERS",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DU SOLEIL",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE ENTRAIDE PHOTO CINE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE FAMILIALE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE FRATERNELLE DES TERRITORIAUX",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE PREVIFRANCE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"OCIANE MATMUT",a:"OUI",s:"OUI",c:""},
+    {n:"RADIANCE GROUPE HUMANIS OUEST",a:"OUI",s:"OUI",c:""},
+    {n:"SANTIANE – NOELIANE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 27/03/2025"},
+    {n:"SMA BTP VIE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 18/04/2025"},
+    {n:"SIGMAGE",a:"OUI",s:"NON",c:""},
+    {n:"SMARIP",a:"OUI",s:"OUI",c:""},
+    {n:"SMI",a:"OUI",s:"OUI",c:""},
+    {n:"SOGAREP",a:"OUI",s:"NON",c:""},
+    {n:"TERRITORIA MUTUELLE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"TG ASSUR EPC / GFA CARAIBE / MUTUELLE SANTE / PRAGA / PRUDENCE CREOLE",a:"OUI",s:"OUI",c:""},
+    {n:"UNEO",a:"OUI",s:"OUI",c:""},
+    {n:"UNISANTE PREVOYANCE / USP",a:"OUI",s:"OUI",c:""},
+    {n:"VERSPIEREN",a:"OUI",s:"OUI",c:""}
+   ]},
   {nom:"MUTUELLE PREVIFRANCE",tele:"77 69 50 669",ace:"OUI",sejour:"OUI",
    comment:"Nouveau — avant le 01/01/2026, utilisez iSANTÉ",muts:[]},
   {nom:"VIAMEDIS",tele:"75 99 00 10",ace:"VOIR DÉTAIL",sejour:"OUI",comment:"",
-   muts:getOperMuts("VIAMEDIS")},
+   muts:[
+    {n:"AGGEMA",a:"OUI",s:"NON",c:""},
+    {n:"AGLAE",a:"OUI",s:"OUI",c:""},
+    {n:"ALMUTRA",a:"OUI",s:"OUI",c:""},
+    {n:"AMELLIS",a:"OUI",s:"OUI",c:""},
+    {n:"APRIL SANTE PREVOYANCE",a:"OUI",s:"OUI",c:""},
+    {n:"ASP COLLECTIVES ex APRIL ENTREPRISE PREV",a:"OUI",s:"OUI",c:""},
+    {n:"AVENIR MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"AVENIR SANTE",a:"OUI",s:"OUI",c:""},
+    {n:"AVENIR SANTE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"CENTRE DE GESTION SANTE",a:"OUI",s:"NON",c:""},
+    {n:"CGRM – SPVIE",a:"OUI",s:"OUI",c:""},
+    {n:"CNM PREVOYANCE SANTE",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/01/2023"},
+    {n:"CNP",a:"OUI",s:"NON",c:""},
+    {n:"CPMS ABELA MGD",a:"OUI",s:"OUI",c:""},
+    {n:"CYBELE SOLIDARITE",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/01/2025"},
+    {n:"ENERGIE OPTIMA",a:"OUI",s:"OUI",c:""},
+    {n:"EURO-ASSURANCE ONE UP (ASSU 2000)",a:"OUI",s:"NON",c:""},
+    {n:"GESTASSUR (INTERPREVOYANCE)",a:"OUI",s:"NON",c:""},
+    {n:"WTW (ex GRAS SAVOYE)",a:"OUI",s:"OUI",c:""},
+    {n:"GROUPE PASTEUR MUTUALITE – AGMF",a:"OUI",s:"OUI",c:""},
+    {n:"HENNER ET AMIS MALAKOFF MEDERIC",a:"OUI",s:"OUI",c:""},
+    {n:"IDENTITES MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"IG SANTE",a:"OUI",s:"NON",c:""},
+    {n:"INSTITUT NATIONAL DE PREVOYANCE DES REPRESENTANTS",a:"OUI",s:"OUI",c:""},
+    {n:"IPECA (hors PSY)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"IPSEC",a:"OUI",s:"OUI",c:""},
+    {n:"LA MEDICALE DE FRANCE",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/01/2025, sinon ALMERYS"},
+    {n:"L'EQUITE ASSURANCES",a:"OUI",s:"OUI",c:""},
+    {n:"LUXIOR ASSURANCES",a:"OUI",s:"OUI",c:""},
+    {n:"MALAKOFF HUMANIS ASSURANCE",a:"OUI",s:"OUI",c:""},
+    {n:"MALAKOFF HUMANIS NATIONAL",a:"OUI",s:"OUI",c:""},
+    {n:"MALAKOFF HUMANIS PREVOYANCE",a:"OUI",s:"OUI",c:""},
+    {n:"MANSUY ASSURANCES",a:"OUI",s:"OUI",c:""},
+    {n:"MAXANCE",a:"OUI",s:"NON",c:""},
+    {n:"MCVPAP – Mutuelle Complémentaire des Agents Publics",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2025"},
+    {n:"MCA",a:"OUI",s:"OUI",c:""},
+    {n:"MUTELIOS (ex MFIF – CNM)",a:"OUI",s:"OUI",c:""},
+    {n:"MGD – Mutuelle Générale de la Distribution",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MGEN",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"MIE",a:"OUI",s:"OUI",c:""},
+    {n:"MIEL MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"MOBILITE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"MUROS",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUA GESTION",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUA GESTION (MIEUX ETRE)",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUANCE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DU CHAMPAGNE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DU REMPART",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/07/2023, sinon ACTIL"},
+    {n:"MUTUELLE GENERALE DE PREVOYANCE SOCIALE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE GENERALE DES CHEMINOTS",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE MALAKOFF HUMANIS",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE MUTAERO",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE ENERGIE",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE EPSIL",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE EQUILIBRE",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE GESTION",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE SANTE (MUTUA)",a:"OUI",s:"OUI",c:""},
+    {n:"NEOSANTE",a:"OUI",s:"OUI",c:""},
+    {n:"OCSO",a:"OUI",s:"NON",c:""},
+    {n:"ORYS SANTE / ORYS TRANQUILITE",a:"OUI",s:"OUI",c:""},
+    {n:"OWELLO",a:"OUI",s:"NON",c:""},
+    {n:"PACIFICA",a:"OUI",s:"OUI",c:""},
+    {n:"PMIF",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/01/2023"},
+    {n:"PREVOIR",a:"OUI",s:"OUI",c:""},
+    {n:"RADIANCE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"ROEDERER – SIMAX",a:"OUI",s:"OUI",c:""},
+    {n:"SANTEO",a:"OUI",s:"OUI",c:""},
+    {n:"SGSANTE",a:"OUI",s:"NON",c:""},
+    {n:"SMCC – BANQUE DE FRANCE",a:"OUI",s:"NON",c:""},
+    {n:"SMI",a:"OUI",s:"OUI",c:""},
+    {n:"SO LYON",a:"OUI",s:"OUI",c:""},
+    {n:"THELEM",a:"OUI",s:"OUI",c:""},
+    {n:"UCR",a:"OUI",s:"OUI",c:""},
+    {n:"UFR",a:"OUI",s:"OUI",c:"Nouveau : pour les séjours à partir du 01/01/2026"},
+    {n:"UMS",a:"OUI",s:"OUI",c:""},
+    {n:"UNISANTE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates antérieures au 01/01/2026"},
+    {n:"UNIASSUR",a:"OUI",s:"NON",c:""},
+    {n:"VIASANTE (ex MUTUELLE BLEUE)",a:"OUI",s:"OUI",c:""},
+    {n:"VILAVI",a:"OUI",s:"OUI",c:""},
+    {n:"VERSPIEREN",a:"OUI",s:"OUI",c:""},
+    {n:"WAKAM",a:"OUI",s:"OUI",c:""},
+    {n:"YVELIN",a:"OUI",s:"NON",c:""}
+   ]},
   {nom:"ACTIL",tele:"69 90 61 21",ace:"OUI",sejour:"OUI",comment:"",muts:[]},
   {nom:"SOLIMUT MUTUELLE DE FRANCE",tele:"13 01 03 17",ace:"OUI",sejour:"OUI",comment:"",muts:[]},
   {nom:"SOLIMUT CSMR",tele:"13 99 99 99",ace:"NON",sejour:"OUI",
    comment:"TM et ACE : CAMIEG jusqu'au 31/12/2025, puis ALMERYS à partir du 01/01/2026",muts:[]},
   {nom:"SP SANTÉ",tele:"00 00 00 61",ace:"VOIR DÉTAIL",sejour:"OUI",comment:"",
-   muts:getOperMuts("SP SANTE")},
+   muts:[
+    {n:"AIAC",a:"OUI",s:"OUI",c:""},
+    {n:"ALLIANZ",a:"OUI",s:"OUI",c:""},
+    {n:"APGIS",a:"OUI",s:"OUI",c:""},
+    {n:"APRIA RSA",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/01/2023, sinon ISANTE"},
+    {n:"CGRM",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/01/2023, sinon ISANTE"},
+    {n:"CPMS",a:"OUI",s:"OUI",c:""},
+    {n:"DYNALIS",a:"OUI",s:"OUI",c:""},
+    {n:"GEREP",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"GIEPS",a:"OUI",s:"OUI",c:""},
+    {n:"GMF",a:"OUI",s:"OUI",c:""},
+    {n:"MAAF",a:"OUI",s:"OUI",c:""},
+    {n:"MMA",a:"OUI",s:"OUI",c:""},
+    {n:"FILHET ALLARD",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"AREAS",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/07/2024"},
+    {n:"ALLIANZ IGESTION",a:"OUI",s:"OUI",c:""}
+   ]},
   {nom:"LIBRE CHOIX",tele:"59 02 59 08",ace:"OUI",sejour:"OUI",comment:"",muts:[]}
 ];
 
@@ -1739,7 +2009,106 @@ function toggleDsp(id){
 /* ═══════════════ DRE-CP PUBLIC — CODES TÉLÉTRANSMISSION ═══════════════ */
 var DRECP_PUB_OPERS=[
   {nom:"ALMERYS",tele:"98 53 20 01",ace:"OUI",sejour:"OUI",retour:"oui",comment:"",
-   muts:getOperMuts("ALMERYS")},
+   muts:[
+    {n:"ADEP",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/11/2025"},
+    {n:"ADREA MUTUELLE – Alpes Dauphiné (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Auvergne (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Bourgogne (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Franche-Comté (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Languedoc-Roussillon/PACA (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Normandie/Pays de Loire/Bretagne (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Pays de l'Ain (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ADREA MUTUELLE – Pays de Savoie (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"AESIO ex ADREA – Centre de Gestion Paris",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"AG2RLM VIASANTE",a:"OUI",s:"OUI",c:""},
+    {n:"ALAN",a:"OUI",s:"OUI",c:""},
+    {n:"AMPLI",a:"OUI",s:"OUI",c:""},
+    {n:"APRIL INTERNATIONAL",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"AREA CONSEIL",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025"},
+    {n:"ASCOMA",a:"OUI",s:"NON",c:""},
+    {n:"ASRAMA GESTION (ENTRAIN PARTIEL / AMELLIS)",a:"OUI",s:"OUI",c:""},
+    {n:"CAMIEG (SANERGI IEG, SOLIMUT CSMR, ROEDERER SIMAX)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"CEGEMA ASSURANCE",a:"OUI",s:"OUI",c:"Attention : à partir du 01/07/2023 SE, à partir du 01/01/2024 séjours, à partir du 01/01/2025 → ISANTE"},
+    {n:"CERGAP GESTION",a:"OUI",s:"OUI",c:""},
+    {n:"CIGNA",a:"OUI",s:"OUI",c:""},
+    {n:"CIPRES ASSURANCES",a:"OUI",s:"NON",c:""},
+    {n:"COLLECTEAM",a:"OUI",s:"OUI",c:""},
+    {n:"COMPLEVIE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"CPAMIF",a:"OUI",s:"OUI",c:""},
+    {n:"CPMS",a:"OUI",s:"OUI",c:""},
+    {n:"CSC",a:"OUI",s:"NON",c:""},
+    {n:"ECA",a:"OUI",s:"OUI",c:""},
+    {n:"GENERALI",a:"OUI",s:"OUI",c:""},
+    {n:"GESTINEO",a:"OUI",s:"NON",c:""},
+    {n:"GFP HUMEN",a:"OUI",s:"NON",c:""},
+    {n:"GIE GROUPE NATION (PREMAGEST)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"GIE IS",a:"OUI",s:"OUI",c:""},
+    {n:"GRAS SAVOYE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025"},
+    {n:"GROUPE AESIO ex EOVI MCD TIERS PAYANT",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"GROUPE FRANCE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"GSA_SI",a:"OUI",s:"OUI",c:""},
+    {n:"HEMOS",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025"},
+    {n:"HOLDING PESENTI",a:"OUI",s:"OUI",c:""},
+    {n:"IGA GESTION",a:"OUI",s:"NON",c:""},
+    {n:"INTERIALE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"IRP AUTO – Mutuelle des professions de l'automobile",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"JP COLONNA",a:"OUI",s:"NON",c:""},
+    {n:"LA FRONTALIERE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"LA MEDICALE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2025"},
+    {n:"LA MUTUELLE DES MEDECINS",a:"OUI",s:"OUI",c:""},
+    {n:"LAMIE FRANCE",a:"OUI",s:"OUI",c:""},
+    {n:"LES ASSURANCES MEDICALES",a:"OUI",s:"OUI",c:""},
+    {n:"LES MENAGES PREVOYANTS (LMP)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"LMG",a:"OUI",s:"OUI",c:""},
+    {n:"LSN ASSURANCES",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"LUCIE TECH (JAJI)",a:"OUI",s:"OUI",c:""},
+    {n:"LUXIOR",a:"OUI",s:"OUI",c:""},
+    {n:"MACIF APIVIA",a:"OUI",s:"OUI",c:""},
+    {n:"MACIF BPCEA",a:"OUI",s:"OUI",c:""},
+    {n:"MACIF MMS",a:"OUI",s:"OUI",c:""},
+    {n:"MAGE – Mutuelle Autonome Générale Education",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/02/2024"},
+    {n:"MUTUELLE CHEMINOTS DU NORD (MCN)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MUTUELLE COMPLEMENTAIRE D'ALSACE (MCA)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MBA MUTUELLE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MCEN",a:"OUI",s:"OUI",c:""},
+    {n:"MCF",a:"OUI",s:"OUI",c:""},
+    {n:"MFTGS",a:"OUI",s:"OUI",c:""},
+    {n:"MGAS",a:"OUI",s:"OUI",c:""},
+    {n:"MGEFI",a:"OUI",s:"OUI",c:""},
+    {n:"MGP POLICE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DE L'INDUSTRIE DU PETROLE (MIP)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"MMH",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2025"},
+    {n:"MMJ",a:"OUI",s:"OUI",c:""},
+    {n:"MUTAME",a:"OUI",s:"OUI",c:""},
+    {n:"MUTLOR",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MUTUALE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE APREVA (AESIO)",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE ENTRAIN",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE LE RALLIEMENT",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE LMDE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE SAINT AUBANNAISE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"NUOMA MUTUELLE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025 (voir MACIF APIVIA)"},
+    {n:"OWLIANCE CNP",a:"OUI",s:"NON",c:""},
+    {n:"OWLIANCE LBPAS",a:"OUI",s:"OUI",c:""},
+    {n:"OWLIANCE MME",a:"OUI",s:"OUI",c:""},
+    {n:"OWLIANCE PR MPCDC",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2024"},
+    {n:"OWLIANCE SURAVENIR",a:"OUI",s:"NON",c:""},
+    {n:"POP SANTE",a:"OUI",s:"OUI",c:""},
+    {n:"SAMBO",a:"OUI",s:"OUI",c:""},
+    {n:"SMATIS",a:"OUI",s:"OUI",c:""},
+    {n:"SMERRA",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/02/2024"},
+    {n:"SMH",a:"OUI",s:"OUI",c:"Nouveau : SE à partir du 01/09/2024, séjours à partir du 01/01/2025"},
+    {n:"SOGECAP",a:"OUI",s:"OUI",c:""},
+    {n:"SOLIDARITE MUTUALISTE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025 (voir MUTUALE)"},
+    {n:"SOLLY AZAR SANTE & VIE",a:"OUI",s:"OUI",c:""},
+    {n:"ST HONORE",a:"OUI",s:"OUI",c:""},
+    {n:"SUISSCOURTAGE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2024"},
+    {n:"UGIP ASSURANCES",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"VERSPIEREN CLIENT",a:"OUI",s:"NON",c:""},
+    {n:"VIASANTE",a:"OUI",s:"OUI",c:""},
+    {n:"REPAM",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/07/2023"},
+    {n:"MBTP",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/07/2023"}
+   ]},
   {nom:"CARTE BLANCHE TIERS PAYANT",tele:"98 53 22 03",ace:"VOIR DÉTAIL",sejour:"NON",retour:"oui",
    comment:"Attention : à partir du 1er janvier 2026, fin d'activité → migration vers CARTE BLANCHE PARTENAIRE",
    muts:[{n:"SWISS LIFE",a:"OUI",s:"NON",c:"Carte Blanche Tiers Payant jusqu'au 31/12/2025"}]},
@@ -1751,7 +2120,71 @@ var DRECP_PUB_OPERS=[
   {nom:"HARMONIE FH",tele:"44 22 24 67",ace:"OUI",sejour:"OUI",retour:"non",comment:"Retour non visible sur la plateforme 4AXES.NET.",muts:[]},
   {nom:"HARMONIE MUTUELLE – Centre de Gestion TOTAL DAIF / DACO / ARGEDIS",tele:"89 90 02 94",ace:"OUI",sejour:"OUI",retour:"non",comment:"Retour non visible sur la plateforme 4AXES.NET.",muts:[]},
   {nom:"ISANTE",tele:"00 73 39 31",ace:"VOIR DÉTAIL",sejour:"OUI",retour:"oui",comment:"",
-   muts:getOperMuts("ISANTE")},
+   muts:[
+    {n:"AGEO / SGSANTE",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/01/2023"},
+    {n:"TG ASSUR ex APRIA RSA LIMOGES",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"TG ASSUR ex APRIA RSA MONTPELLIER",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"TG ASSUR POOL ex APRIA RSA / AGA",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"TG ASSUR ex APRIA RSA / GESTION ACS",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"ASSUREURS NUM IGESTION",a:"OUI",s:"OUI",c:""},
+    {n:"ABEILLE ASSURANCES",a:"OUI",s:"OUI",c:""},
+    {n:"AXA",a:"OUI",s:"NON",c:""},
+    {n:"AON",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 02/10/2023"},
+    {n:"BALOO",a:"OUI",s:"OUI",c:""},
+    {n:"BCAC",a:"OUI",s:"OUI",c:""},
+    {n:"CEGEMA",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2025"},
+    {n:"CGRM",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"COGEVIE",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/12/2024"},
+    {n:"COLLECTEAM",a:"OUI",s:"OUI",c:""},
+    {n:"ENTIS",a:"OUI",s:"OUI",c:""},
+    {n:"GESTASSUR",a:"OUI",s:"OUI",c:"Nouveau : frais de séjour à partir du 01/01/2026"},
+    {n:"GESTINEO",a:"OUI",s:"OUI",c:""},
+    {n:"GFA CARAIBES",a:"OUI",s:"OUI",c:""},
+    {n:"GFP – PLANSANTE",a:"OUI",s:"NON",c:""},
+    {n:"WTW France (ex Gras Savoye)",a:"OUI",s:"OUI",c:""},
+    {n:"HELIUM",a:"OUI",s:"OUI",c:""},
+    {n:"HARMONIE FONCTION PUBLIQUE",a:"OUI",s:"OUI",c:""},
+    {n:"IGESTION",a:"OUI",s:"OUI",c:""},
+    {n:"INTERIALE (vérifier carte)",a:"OUI",s:"NON",c:"Nouveau : pour les dates d'entrée à partir du 01/10/2025"},
+    {n:"IRCEM",a:"OUI",s:"OUI",c:""},
+    {n:"ISTYA COLLECTIVES",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée jusqu'au 31/12/2025"},
+    {n:"JUST",a:"OUI",s:"OUI",c:""},
+    {n:"KLESIA CARCEPT / KLESIA BY LMF TECH",a:"OUI",s:"OUI",c:""},
+    {n:"LA BANQUE POSTALE PREVOYANCE",a:"OUI",s:"OUI",c:""},
+    {n:"MA MUTUELLE MGEN",a:"OUI",s:"OUI",c:""},
+    {n:"MCDEF",a:"OUI",s:"OUI",c:""},
+    {n:"MERCER",a:"OUI",s:"NON",c:""},
+    {n:"MHV",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MIPCF / PLEYEL SANTE",a:"OUI",s:"NON",c:""},
+    {n:"MMA COLLECTIVE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MMA ENTREPRISE",a:"OUI",s:"OUI",c:""},
+    {n:"MNH",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE NATIONALE DES SAPEURS POMPIERS (MNSP)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"MPI",a:"OUI",s:"NON",c:""},
+    {n:"MSG",a:"OUI",s:"OUI",c:""},
+    {n:"MTH",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/01/2023"},
+    {n:"MUTUELLE BAGNEAUX",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DASSAULT",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DE POITIERS",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DU SOLEIL",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE ENTRAIDE PHOTO CINE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE FAMILIALE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE FRATERNELLE DES TERRITORIAUX",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE PREVIFRANCE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"OCIANE MATMUT",a:"OUI",s:"OUI",c:""},
+    {n:"RADIANCE GROUPE HUMANIS OUEST",a:"OUI",s:"OUI",c:""},
+    {n:"SANTIANE – NOELIANE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 27/03/2025"},
+    {n:"SMA BTP VIE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 18/04/2025"},
+    {n:"SIGMAGE",a:"OUI",s:"NON",c:""},
+    {n:"SMARIP",a:"OUI",s:"OUI",c:""},
+    {n:"SMI",a:"OUI",s:"OUI",c:""},
+    {n:"SOGAREP",a:"OUI",s:"NON",c:""},
+    {n:"TERRITORIA MUTUELLE",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"TG ASSUR EPC / GFA CARAIBE / MUTUELLE SANTE / PRAGA / PRUDENCE CREOLE",a:"OUI",s:"OUI",c:""},
+    {n:"UNEO",a:"OUI",s:"OUI",c:""},
+    {n:"UNISANTE PREVOYANCE / USP",a:"OUI",s:"OUI",c:""},
+    {n:"VERSPIEREN",a:"OUI",s:"OUI",c:""}
+   ]},
   {nom:"LES MUTUELLES DU SOLEIL – ALPES-MARITIMES",tele:"04 00 13 76",ace:"OUI",sejour:"OUI",retour:"oui",
    comment:"Attention : pour les soins antérieurs au 01/01/2023. Pour les soins à partir du 01/01/2023 → ISANTE.",muts:[]},
   {nom:"MUTACITE",tele:"99 70 00 15",ace:"OUI",sejour:"OUI",retour:"oui",comment:"",muts:[]},
@@ -1766,9 +2199,108 @@ var DRECP_PUB_OPERS=[
   {nom:"SOLIMUT CSMR",tele:"13 99 99 99",ace:"NON",sejour:"OUI",retour:"oui",
    comment:"TM et ACE : CAMIEG jusqu'au 31/12/2025, puis ALMERYS à partir du 01/01/2026.",muts:[]},
   {nom:"SP SANTÉ",tele:"00 00 00 61",ace:"VOIR DÉTAIL",sejour:"OUI",retour:"oui",comment:"",
-   muts:getOperMuts("SP SANTE")},
+   muts:[
+    {n:"AIAC",a:"OUI",s:"OUI",c:""},
+    {n:"ALLIANZ",a:"OUI",s:"OUI",c:""},
+    {n:"APGIS",a:"OUI",s:"OUI",c:""},
+    {n:"APRIA RSA",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/01/2023, sinon ISANTE"},
+    {n:"CGRM",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/01/2023, sinon ISANTE"},
+    {n:"CPMS",a:"OUI",s:"OUI",c:""},
+    {n:"DYNALIS",a:"OUI",s:"OUI",c:""},
+    {n:"GEREP",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"GIEPS",a:"OUI",s:"OUI",c:""},
+    {n:"GMF",a:"OUI",s:"OUI",c:""},
+    {n:"MAAF",a:"OUI",s:"OUI",c:""},
+    {n:"MMA",a:"OUI",s:"OUI",c:""},
+    {n:"FILHET ALLARD",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"AREAS",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/07/2024"},
+    {n:"ALLIANZ IGESTION",a:"OUI",s:"OUI",c:""}
+   ]},
   {nom:"VIAMEDIS",tele:"75 99 00 10",ace:"VOIR DÉTAIL",sejour:"OUI",retour:"oui",comment:"",
-   muts:getOperMuts("VIAMEDIS")},
+   muts:[
+    {n:"AGGEMA",a:"OUI",s:"NON",c:""},
+    {n:"AGLAE",a:"OUI",s:"OUI",c:""},
+    {n:"ALMUTRA",a:"OUI",s:"OUI",c:""},
+    {n:"AMELLIS",a:"OUI",s:"OUI",c:""},
+    {n:"APRIL SANTE PREVOYANCE",a:"OUI",s:"OUI",c:""},
+    {n:"ASP COLLECTIVES ex APRIL ENTREPRISE PREV",a:"OUI",s:"OUI",c:""},
+    {n:"AVENIR MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"AVENIR SANTE",a:"OUI",s:"OUI",c:""},
+    {n:"AVENIR SANTE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"CENTRE DE GESTION SANTE",a:"OUI",s:"NON",c:""},
+    {n:"CGRM – SPVIE",a:"OUI",s:"OUI",c:""},
+    {n:"CNM PREVOYANCE SANTE",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/01/2023"},
+    {n:"CNP",a:"OUI",s:"NON",c:""},
+    {n:"CPMS ABELA MGD",a:"OUI",s:"OUI",c:""},
+    {n:"CYBELE SOLIDARITE",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/01/2025"},
+    {n:"ENERGIE OPTIMA",a:"OUI",s:"OUI",c:""},
+    {n:"EURO-ASSURANCE ONE UP (ASSU 2000)",a:"OUI",s:"NON",c:""},
+    {n:"GESTASSUR (INTERPREVOYANCE)",a:"OUI",s:"NON",c:""},
+    {n:"WTW (ex GRAS SAVOYE)",a:"OUI",s:"OUI",c:""},
+    {n:"GROUPE PASTEUR MUTUALITE – AGMF",a:"OUI",s:"OUI",c:""},
+    {n:"HENNER ET AMIS MALAKOFF MEDERIC",a:"OUI",s:"OUI",c:""},
+    {n:"IDENTITES MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"IG SANTE",a:"OUI",s:"NON",c:""},
+    {n:"INSTITUT NATIONAL DE PREVOYANCE DES REPRESENTANTS",a:"OUI",s:"OUI",c:""},
+    {n:"IPECA (hors PSY)",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2026"},
+    {n:"IPSEC",a:"OUI",s:"OUI",c:""},
+    {n:"LA MEDICALE DE FRANCE",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/01/2025, sinon ALMERYS"},
+    {n:"L'EQUITE ASSURANCES",a:"OUI",s:"OUI",c:""},
+    {n:"LUXIOR ASSURANCES",a:"OUI",s:"OUI",c:""},
+    {n:"MALAKOFF HUMANIS ASSURANCE",a:"OUI",s:"OUI",c:""},
+    {n:"MALAKOFF HUMANIS NATIONAL",a:"OUI",s:"OUI",c:""},
+    {n:"MALAKOFF HUMANIS PREVOYANCE",a:"OUI",s:"OUI",c:""},
+    {n:"MANSUY ASSURANCES",a:"OUI",s:"OUI",c:""},
+    {n:"MAXANCE",a:"OUI",s:"NON",c:""},
+    {n:"MCVPAP – Mutuelle Complémentaire des Agents Publics",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2025"},
+    {n:"MCA",a:"OUI",s:"OUI",c:""},
+    {n:"MUTELIOS (ex MFIF – CNM)",a:"OUI",s:"OUI",c:""},
+    {n:"MGD – Mutuelle Générale de la Distribution",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MGEN",a:"OUI",s:"OUI",c:"Nouveau : pour les dates d'entrée à partir du 01/01/2024"},
+    {n:"MIE",a:"OUI",s:"OUI",c:""},
+    {n:"MIEL MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"MOBILITE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"MUROS",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUA GESTION",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUA GESTION (MIEUX ETRE)",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUANCE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DU CHAMPAGNE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE DU REMPART",a:"OUI",s:"OUI",c:"Attention : pour les soins antérieurs au 01/07/2023, sinon ACTIL"},
+    {n:"MUTUELLE GENERALE DE PREVOYANCE SOCIALE",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE GENERALE DES CHEMINOTS",a:"OUI",s:"OUI",c:"Attention : pour les dates d'entrée à partir du 01/01/2023"},
+    {n:"MUTUELLE MALAKOFF HUMANIS",a:"OUI",s:"OUI",c:""},
+    {n:"MUTUELLE MUTAERO",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE ENERGIE",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE EPSIL",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE EQUILIBRE",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE GESTION",a:"OUI",s:"OUI",c:""},
+    {n:"NEOLIANE SANTE (MUTUA)",a:"OUI",s:"OUI",c:""},
+    {n:"NEOSANTE",a:"OUI",s:"OUI",c:""},
+    {n:"OCSO",a:"OUI",s:"NON",c:""},
+    {n:"ORYS SANTE / ORYS TRANQUILITE",a:"OUI",s:"OUI",c:""},
+    {n:"OWELLO",a:"OUI",s:"NON",c:""},
+    {n:"PACIFICA",a:"OUI",s:"OUI",c:""},
+    {n:"PMIF",a:"OUI",s:"OUI",c:"Attention : frais de séjour à partir du 01/01/2023"},
+    {n:"PREVOIR",a:"OUI",s:"OUI",c:""},
+    {n:"RADIANCE MUTUELLE",a:"OUI",s:"OUI",c:""},
+    {n:"ROEDERER – SIMAX",a:"OUI",s:"OUI",c:""},
+    {n:"SANTEO",a:"OUI",s:"OUI",c:""},
+    {n:"SGSANTE",a:"OUI",s:"NON",c:""},
+    {n:"SMCC – BANQUE DE FRANCE",a:"OUI",s:"NON",c:""},
+    {n:"SMI",a:"OUI",s:"OUI",c:""},
+    {n:"SO LYON",a:"OUI",s:"OUI",c:""},
+    {n:"THELEM",a:"OUI",s:"OUI",c:""},
+    {n:"UCR",a:"OUI",s:"OUI",c:""},
+    {n:"UFR",a:"OUI",s:"OUI",c:"Nouveau : pour les séjours à partir du 01/01/2026"},
+    {n:"UMS",a:"OUI",s:"OUI",c:""},
+    {n:"UNISANTE",a:"OUI",s:"OUI",c:"Nouveau : pour les dates antérieures au 01/01/2026"},
+    {n:"UNIASSUR",a:"OUI",s:"NON",c:""},
+    {n:"VIASANTE (ex MUTUELLE BLEUE)",a:"OUI",s:"OUI",c:""},
+    {n:"VILAVI",a:"OUI",s:"OUI",c:""},
+    {n:"VERSPIEREN",a:"OUI",s:"OUI",c:""},
+    {n:"WAKAM",a:"OUI",s:"OUI",c:""},
+    {n:"YVELIN",a:"OUI",s:"NON",c:""}
+   ]},
   {nom:"GROUPAMA (tous centres de gestion)",tele:"09 42 00 01",ace:"OUI",sejour:"OUI",retour:"oui",
    comment:"⚠️ Aucun nouveau démarrage pour le moment.",muts:[]},
   {nom:"GAN ASSURANCE",tele:"09 47 00 06",ace:"OUI",sejour:"OUI",retour:"oui",
@@ -1879,7 +2411,7 @@ var REF_PEC=[
 {"n": "ALLIANZ -  IGESTION", "s": "54211029101340", "a": "INFO", "i": "Nouveau chez ALLIANZ :  IGESTION"},
 {"n": "ALLIANZ - SP SANTE", "s": "54211029100011", "a": "PEC"},
 {"n": "ALLSECUR Ð GMPA", "s": "40320506500036", "a": "PEC"},
-{"n": "ALMERYS", "s": "43270163900069", "a": "PEC", "i": "Pas de PEC en mode de traitement ambulatoire(sauf pour la chambre particuliere et pour les frais de sejours)."},
+{"n": "ALMERYS", "s": "43270163900069", "a": "PEC"},
 {"n": "ALPTIS ASSURANCES - TIERS PAYANT ACTIL", "s": "33524448900084", "a": "SP", "sp": "87921380900012", "i": "LES DEMANDES DE PRISE EN CHARGE CONCERNANT CET ORGANISME DOIVENT ETRE ADRESSEES VERS L'OC SUIVANT : ACTIL (DELEGATAIRE PEC TOUT ORGANISME)- SIRET 87921380900012"},
 {"n": "ALTEIS MUTUELLE TROYES", "s": "41458800400039", "a": "NON", "i": "HARMONIE MUTUELLE ne delivre pas de prise en charge, quel que soit le type de sejour. Sur la carte mutuelle figurent les elements vous permettant d'effectuer le tiers payant sans demander au prealable une prise en charge.", "ad": "28 RUE CLAUDE HUEZ 10000 TROYES"},
 {"n": "AMAGUIZ.COM / AMALINE", "s": "39347445700040", "a": "SP", "sp": "38228526000974", "i": "LES DEMANDES DE PRISE EN CHARGE CONCERNANT CET ORGANISME DOIVENT ETRE ADRESSEES VERS L'OC SUIVANT : GROUPAMA PARIS VAL DE LOIRE- SIRET 38228526000974"},
@@ -3012,10 +3544,24 @@ function _buildPecSiretMap(){
   }
   return _pecSiretMap;
 }
+/* Alias connus : variantes d'écriture rencontrées dans de vrais exports clients,
+   qui ne se rapprochent pas automatiquement du nom officiel du référentiel PEC.
+   Clés déjà normalisées. À enrichir au fil des cas rencontrés. */
+var PEC_ALIASES={
+  'MUTAME ET PLUS':'MUTAME PLUS',
+  'SOGAREP AXA ENTREPRISE':'SOGAREP SOCIETE DE GESTION ADMINISTRATIVE DE REGIME DE PREVOYANCE'
+};
 function _findPecSiret(csvName){
   var map=_buildPecSiretMap();
   var n=_normPecName(csvName);
   if(map[n])return map[n];
+  /* Alias connu */
+  if(PEC_ALIASES[n]&&map[PEC_ALIASES[n]])return map[PEC_ALIASES[n]];
+  /* Comparaison sans aucun espace (corrige les variantes du type "IGSANTE" vs "IG SANTE") */
+  var nNoSpace=n.replace(/ /g,'');
+  for(var key in map){
+    if(key.replace(/ /g,'')===nNoSpace)return map[key];
+  }
   // recherche partielle
   for(var key in map){
     if(key.length<5)continue;
@@ -3094,7 +3640,8 @@ function renderPecTopDebTable(rows){
   var csv='Rang;Mutuelle;Volume;SIRET PEC\n';
   for(var j=0;j<rows.length;j++){
     var rr=rows[j];var mm=_findPecSiret(rr.nom);
-    csv+=(j+1)+';'+rr.nom+';'+rr.vol+';'+(mm&&mm.siret&&mm.type!=='NON'?mm.siret:'')+'\n';
+    var siretVal=(mm&&mm.siret&&mm.type!=='NON')?mm.siret:'';
+    csv+=(j+1)+';'+rr.nom+';'+rr.vol+';'+(siretVal?('="'+siretVal+'"'):'')+'\n';
   }
   var blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
   var dlUrl=URL.createObjectURL(blob);
@@ -3452,6 +3999,152 @@ function renderTopDebTable(rows){
   document.getElementById('topdeb-result').innerHTML=html;
 }
 
+/* ── Rapprochement PEC ↔ Télétransmission (3 normes) ── */
+var _teleIndex=null;
+var _PEC_STOP=new Set(['MUTUELLE','MUTUELLES','GROUPE','GESTION','CENTRE','DE','DU','DES','LA','LE','LES','ET','ASSURANCES','ASSURANCE','EX','CIE','NATIONALE','GENERALE']);
+function _sigWords(s){
+  return _normPecName(s).split(' ').filter(function(w){return w.length>=4 && !_PEC_STOP.has(w);});
+}
+function _buildTeleIndexOne(opersArr){
+  var list=[];
+  for(var i=0;i<opersArr.length;i++){
+    var op=opersArr[i];
+    /* L'opérateur lui-même (ex: ALMERYS, SOLIMUT, iSanté) est toujours reconnu par son propre nom */
+    list.push({key:_normPecName(op.nom),words:_sigWords(op.nom),a:op.ace,s:op.sejour,tele:op.tele||'',oper:op.nom,self:true});
+    var muts=op.muts||[];
+    for(var j=0;j<muts.length;j++){
+      var m=muts[j];
+      list.push({key:_normPecName(m.n),words:_sigWords(m.n),a:m.a,s:m.s,tele:op.tele||'',oper:op.nom});
+    }
+  }
+  return list;
+}
+function _buildTeleIndex(){
+  if(_teleIndex)return _teleIndex;
+  _teleIndex={
+    '615':_buildTeleIndexOne(OPERS),
+    drecp:_buildTeleIndexOne(DRECP_OPERS),
+    drepub:_buildTeleIndexOne(DRECP_PUB_OPERS)
+  };
+  return _teleIndex;
+}
+function _lookupTele(list,nom){
+  var n=_normPecName(nom);
+  var wa=_sigWords(nom);
+  var exact=[];
+  for(var i=0;i<list.length;i++){if(list[i].key===n)exact.push(list[i]);}
+  if(exact.length)return _dedupeTele(exact);
+  var sub=[];
+  for(var i=0;i<list.length;i++){
+    var e=list[i];
+    if(n.length>=5&&e.key.length>=5&&(n.indexOf(e.key)>=0||e.key.indexOf(n)>=0))sub.push(e);
+  }
+  if(sub.length)return _dedupeTele(sub);
+  var tok=[];
+  for(var i=0;i<list.length;i++){
+    var e=list[i];
+    var common=wa.filter(function(w){return e.words.indexOf(w)>=0;});
+    if(common.length>=2||(common.length===1&&common[0].length>=6&&wa.length<=2))tok.push(e);
+  }
+  if(tok.length)return _dedupeTele(tok);
+  return null;
+}
+/* Regroupe les résultats identiques (a+s) ; s'il reste plusieurs combinaisons différentes,
+   c'est que la réponse dépend du portefeuille/OC du patient (ex: Verspieren, courtiers multi-mandats). */
+function _dedupeTele(matches){
+  var uniq=[];
+  for(var i=0;i<matches.length;i++){
+    var m=matches[i];
+    var already=uniq.some(function(u){return u.a===m.a&&u.s===m.s&&u.tele===m.tele;});
+    if(!already)uniq.push(m);
+  }
+  if(uniq.length===1)return uniq[0];
+  return {multiple:true,options:uniq};
+}
+function _getTeleDetail(nom){
+  var idx=_buildTeleIndex();
+  return {
+    '615':_lookupTele(idx['615'],nom),
+    drecp:_lookupTele(idx.drecp,nom),
+    drepub:_lookupTele(idx.drepub,nom)
+  };
+}
+/* Rapprochement "intelligent" pour une ligne PEC : utilise la délégation déjà connue
+   (r.a === "SP" -> r.sp, ou r.a === "PEC" -> l'organisme lui-même) pour trouver l'opérateur
+   EXACT, au lieu de deviner par ressemblance de nom. Pour les soins externes, cherche le
+   client dans la liste précise de cet opérateur (pas dans toutes les listes mélangées). */
+function _findSelfEntry(list,operName){
+  var n=_normPecName(operName);
+  for(var i=0;i<list.length;i++){if(list[i].self&&list[i].key===n)return list[i];}
+  for(var i=0;i<list.length;i++){if(list[i].self&&(list[i].key.indexOf(n)>=0||n.indexOf(list[i].key)>=0))return list[i];}
+  return null;
+}
+function _findClientInOper(list,operEntry,clientName){
+  if(!operEntry)return null;
+  var sub=list.filter(function(e){return e.oper===operEntry.oper&&!e.self;});
+  var n=_normPecName(clientName);
+  var wa=_sigWords(clientName);
+  for(var i=0;i<sub.length;i++){if(sub[i].key===n)return sub[i];}
+  for(var i=0;i<sub.length;i++){if(n.length>=5&&sub[i].key.length>=5&&(n.indexOf(sub[i].key)>=0||sub[i].key.indexOf(n)>=0))return sub[i];}
+  for(var i=0;i<sub.length;i++){
+    var common=wa.filter(function(w){return sub[i].words.indexOf(w)>=0;});
+    if(common.length>=2||(common.length===1&&common[0].length>=6&&wa.length<=2))return sub[i];
+  }
+  return null;
+}
+function _getTeleDetailForPec(r){
+  var delegName=null;
+  if(r.a==='SP'&&r.sp)delegName=SIRET_NAMES[r.sp]||null;
+  else if(r.a==='PEC')delegName=r.n;
+  var idx=_buildTeleIndex();
+  var out={};
+  ['615','drecp','drepub'].forEach(function(k){
+    var list=idx[k];
+    if(delegName){
+      var operEntry=_findSelfEntry(list,delegName);
+      if(operEntry){
+        var clientEntry=_findClientInOper(list,operEntry,r.n);
+        /* Séjour = celui de l'opérateur délégataire (fiable, basé sur la PEC connue) */
+        /* Soins externes = celui du client précis si trouvé, sinon on ne sait pas (pas de fallback hasardeux) */
+        out[k]={a:clientEntry?clientEntry.a:null,s:operEntry.s,tele:operEntry.tele,oper:operEntry.oper,partial:!clientEntry};
+        return;
+      }
+    }
+    /* Pas de délégation connue (a=NON/INFO/NEW) : on retombe sur la recherche par nom classique */
+    out[k]=_lookupTele(list,r.n);
+  });
+  return out;
+}
+function _teleBadge(label,detail){
+  if(!detail)return "<div class='pec-tele-norm'><span class='pn-label'>"+label+"</span><span class='pec-tele-unknown'>—</span></div>";
+  if(detail.multiple){
+    var lines=detail.options.map(function(o){
+      var s=o.s==='OUI'?('Séj.✓ ('+o.tele+')'):(o.s==='VOIR DÉTAIL'?'Séj. variable':'Séj.✗');
+      var a=o.a==='OUI'?'Ext.✓':(o.a==='VOIR DÉTAIL'?'Ext. variable':'Ext.✗');
+      return "<div style='margin-left:34px'>&#8226; <strong>"+o.oper+"</strong>&nbsp;: "+s+" &middot; "+a+"</div>";
+    }).join('');
+    return "<div class='pec-tele-norm' style='flex-direction:column;align-items:flex-start'><span class='pn-label'>"+label+"</span><span class='pec-tele-multi'>&#9888;&#65039; selon le portefeuille du patient&nbsp;:</span>"+lines+"</div>";
+  }
+  var sejLine, aceLine;
+  if(detail.s==='VOIR DÉTAIL'){
+    sejLine="<div><span class='pec-tele-unknown'>Séj. variable &mdash; voir détail</span></div>";
+  } else if(detail.s==='OUI'){
+    sejLine="<div><span class='pec-tele-ok'>Séj.&nbsp;✓</span>&nbsp;<span class='pec-tele-via'>"+(detail.tele?("code&nbsp;"+detail.tele):("→&nbsp;"+detail.oper))+"</span></div>";
+  } else {
+    sejLine="<div><span class='pec-tele-no'>Séj.&nbsp;✗</span></div>";
+  }
+  if(detail.a==='VOIR DÉTAIL'){
+    aceLine="<div><span class='pec-tele-unknown'>Ext. variable &mdash; voir détail</span></div>";
+  } else if(detail.a==='OUI'){
+    aceLine="<div><span class='pec-tele-ok'>Ext.&nbsp;✓</span>&nbsp;<span class='pec-tele-via'>→&nbsp;"+detail.oper+"</span></div>";
+  } else if(detail.a==null){
+    aceLine="<div><span class='pec-tele-unknown'>Ext. en cours de validation</span></div>";
+  } else {
+    aceLine="<div><span class='pec-tele-no'>Ext.&nbsp;✗ (facturer patient)</span></div>";
+  }
+  return "<div class='pec-tele-norm' style='flex-direction:column;align-items:flex-start;gap:1px'><span class='pn-label'>"+label+"</span>"+sejLine+aceLine+"</div>";
+}
+
 function renderPEC(){
   var q=(document.getElementById('q-pec').value||'').trim().toLowerCase();
   var tbody=document.getElementById('results-pec');
@@ -3491,13 +4184,13 @@ function renderPEC(){
     else if(r.a==='INFO'){
       if(officialSiret){
         badge=officialSiret===r.s
-          ?"<span class='badge-pec badge-direct'>PEC directe</span>"
+          ?"<span class='badge-pec badge-direct'>OC</span>"
           :"<span class='badge-pec badge-sp'>D&eacute;l&eacute;gation</span>";
       } else {
         badge="<span class='badge-pec badge-info'>Information</span>";
       }
     }
-    else badge="<span class='badge-pec badge-direct'>PEC directe</span>";
+    else badge="<span class='badge-pec badge-direct'>OC</span>";
     /* Note affichée : ICI → indication visuelle du SIRET propre */
     var noteDisplay=noteRaw.replace(/\bICI\b/gi,
       "<span class='pec-ici' title='SIRET propre : "+r.s+"'>ici [SIRET propre&nbsp;: "+r.s+"]</span>");
