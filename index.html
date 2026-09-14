@@ -83,6 +83,26 @@ header p{font-size:11px;opacity:.75}
 .norm-card.green .norm-name{color:var(--green)}
 .norm-card.blue .norm-name{color:var(--blue)}
 /* ── Home banners ── */
+.hero-box{max-width:640px;margin:2.5rem auto 1.8rem;text-align:center;padding:0 1rem}
+.hero-title{font-size:30px;font-weight:800;color:var(--text);margin-bottom:.5rem;letter-spacing:-.01em}
+.hero-sub{font-size:15px;color:var(--text);line-height:1.5;margin-bottom:.6rem}
+.hero-text{font-size:12.5px;color:var(--muted)}
+.hero-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem;max-width:760px;margin:0 auto 2.5rem;padding:0 1rem}
+.hero-card{background:var(--surface);border:2px solid var(--border);border-radius:16px;padding:1.8rem 1.5rem;cursor:pointer;transition:all .18s;text-align:left}
+.hero-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.14)}
+.hero-card.green{border-color:var(--green-border);background:var(--green-light)}
+.hero-card.green:hover{border-color:var(--green)}
+.hero-card.blue{border-color:var(--blue-border);background:var(--blue-light)}
+.hero-card.blue:hover{border-color:var(--blue)}
+.hero-card-icon{font-size:30px;margin-bottom:.6rem}
+.hero-card-title{font-size:18px;font-weight:800;margin-bottom:.5rem}
+.hero-card.green .hero-card-title{color:var(--green)}
+.hero-card.blue .hero-card-title{color:var(--blue)}
+.hero-card-question{font-size:13.5px;font-weight:700;color:var(--text);line-height:1.4;margin-bottom:.5rem}
+.hero-card-desc{font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:.9rem}
+.hero-card-cta{font-size:12px;font-weight:700}
+.hero-card.green .hero-card-cta{color:var(--green)}
+.hero-card.blue .hero-card-cta{color:var(--blue)}
 .home-pec-banner{background:var(--green-light);border:2px solid var(--green-border);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;align-items:flex-start;gap:1rem}
 .home-pec-banner .hpb-icon{font-size:28px;flex-shrink:0;margin-top:.1rem}
 .home-pec-banner .hpb-body{flex:1}
@@ -241,6 +261,10 @@ mark{background:#fff3cd;border-radius:2px;padding:0 1px}
 .pec-modal-save{background:var(--green);border:none;color:#fff}
 .pec-modal-cancel{background:var(--bg);border:1px solid var(--border);color:var(--text)}
 .pec-modal-reset{background:var(--tag-warn-bg);border:1px solid var(--tag-warn);color:var(--tag-warn)}
+@keyframes confettiFall{
+  0%{transform:translateY(0) rotate(0deg);opacity:1}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+}
 .motif-modal{max-width:560px;max-height:88vh;overflow-y:auto}
 .motif-field{margin-bottom:.7rem}
 .motif-field label{display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
@@ -330,18 +354,38 @@ footer{padding:0;margin-top:2rem}
 <!-- ════ ÉCRAN DE SÉLECTION ════ -->
 <div id="screen-select">
 
-  <!-- Bannière PEC -->
-  <div class="home-pec-banner">
-    <div class="hpb-icon">&#9989;</div>
-    <div class="hpb-body">
-      <div class="hpb-title">100&nbsp;% des mutuelles peuvent &ecirc;tre envoy&eacute;es en automatique via votre logiciel</div>
-      <div class="hpb-text">
-        Le <strong>R&eacute;f&eacute;rentiel PEC</strong> regroupe les codes SIRET de tous les organismes AMC pour l&rsquo;envoi automatique des demandes de prise en charge (s&eacute;jour).
-        Ce r&eacute;f&eacute;rentiel est commun aux 3 normes&nbsp;: quelle que soit votre norme de facturation, vous pouvez d&eacute;mat&eacute;rialiser 100&nbsp;% de vos PEC.
-      </div>
-      <button class="hpb-btn" onclick="showNorm('pec')">&#128196;&nbsp;Acc&eacute;der au R&eacute;f&eacute;rentiel PEC</button>
+  <!-- Hero — présentation de l'outil -->
+  <div class="hero-box">
+    <div class="hero-title">AMC Pilote</div>
+    <div class="hero-sub">Pilotez votre <strong>tiers payant hospitalier et soins externes</strong>, toutes normes confondues.</div>
+    <div class="hero-text">Deux référentiels pour automatiser votre gestion administrative :</div>
+  </div>
+
+  <!-- Les 2 grands choix -->
+  <div class="hero-grid">
+    <div class="hero-card green" onclick="showNorm('pec')">
+      <div class="hero-card-icon">&#128203;</div>
+      <div class="hero-card-title">Référentiel PEC</div>
+      <div class="hero-card-question">Vous avez un connecteur automatique pour envoyer vos demandes de PEC ?</div>
+      <div class="hero-card-desc">Obtenez ici le SIRET de chaque organisme pour envoyer vos demandes de prise en charge <strong>en automatique</strong> &mdash; quelle que soit votre norme de facturation.</div>
+      <span class="hero-card-cta">Obtenir le référentiel PEC &rarr;</span>
+    </div>
+    <div class="hero-card blue" onclick="showTeleChoice()">
+      <div class="hero-card-icon">&#128225;</div>
+      <div class="hero-card-title">Télétransmission</div>
+      <div class="hero-card-question">Vous souhaitez envoyer vos factures en télétransmission ?</div>
+      <div class="hero-card-desc">Retrouvez vos <strong>codes de télétransmission</strong> et vos <strong>motifs de rejet</strong>, selon votre norme de facturation.</div>
+      <span class="hero-card-cta">Choisir ma norme &rarr;</span>
     </div>
   </div>
+
+</div>
+
+<!-- ════ CHOIX DE LA NORME (télétransmission) ════ -->
+<div id="screen-tele-choice" class="section-hidden">
+<div class="container" style="max-width:860px">
+
+  <button onclick="backToHome()" style="background:none;border:1px solid var(--border);border-radius:5px;padding:5px 12px;font-size:12px;cursor:pointer;color:var(--muted);margin-bottom:1.2rem">&#8592; Retour à l'accueil</button>
 
   <!-- ── Calculette télétransmission ── -->
   <div class="home-section-label">&#128200;&nbsp;Mon potentiel de t&eacute;l&eacute;transmission</div>
@@ -354,18 +398,18 @@ footer{padding:0;margin-top:2rem}
     </div>
     <div class="topdeb-body" id="topdeb-body">
       <div class="topdeb-actions">
-        <a class="topdeb-btn primary" href="mailto:caroline.allard@4axes.fr?subject=Demande%20Top%20D%C3%A9biteur%20AMC&body=Bonjour%20Caroline%2C%0A%0AJe%20souhaite%20obtenir%20mon%20export%20Top%20Mutuelle%20AMC%20(compte%20superviseur).%0A%0AMon%20FINESS%20%3A%20%5B%C3%A0%20compl%C3%A9ter%5D%0A%0ACordialement">
-          &#9993;&#65039;&nbsp;Demander mon fichier &agrave; 4AXES
+        <a class="topdeb-btn primary" href="mailto:caroline.allard@4axes.fr?subject=Demande%20Top%20D%C3%A9biteur%20AMC&body=Bonjour%20Caroline%2C%0A%0AJe%20n%27ai%20pas%20de%20compte%20superviseur%20et%20je%20souhaite%20obtenir%20mon%20export%20Top%20Mutuelle%20AMC.%0A%0AMon%20FINESS%20%3A%20%5B%C3%A0%20compl%C3%A9ter%5D%0A%0ACordialement">
+          &#9993;&#65039;&nbsp;Je n'ai pas de compte superviseur &mdash; demander mon export à Caroline
         </a>
-        <span style="font-size:12px;color:var(--muted);align-self:center">ou d&eacute;posez directement votre export ci-dessous</span>
       </div>
+      <p style="font-size:12px;color:var(--muted);margin:.6rem 0">Vous avez un compte superviseur sur 4AXES.NET ? Exportez vous-même votre Top Mutuelle et déposez le fichier ci-dessous :</p>
       <div class="topdeb-drop" id="topdeb-drop"
            ondragover="event.preventDefault();this.classList.add('drag')"
            ondragleave="this.classList.remove('drag')"
            ondrop="handleTopDebDrop(event)">
         <input type="file" accept=".csv,.txt" onchange="handleTopDebFile(this.files[0])">
         &#128196; Glissez votre export CSV ici ou <strong>cliquez pour choisir le fichier</strong>
-        <div style="font-size:10.5px;margin-top:.3rem;opacity:.6">Format attendu&nbsp;: Nom;Volume (export compte superviseur ou 4AXES)</div>
+        <div style="font-size:10.5px;margin-top:.3rem;opacity:.6">Format attendu&nbsp;: Nom;Volume (export compte superviseur 4AXES.NET)</div>
       </div>
       <div class="topdeb-result" id="topdeb-result"></div>
     </div>
@@ -397,6 +441,7 @@ footer{padding:0;margin-top:2rem}
     </div>
   </div>
 
+</div>
 </div>
 
 <!-- ════ DRE-CP PRIVÉ ════ -->
@@ -725,9 +770,18 @@ applyTheme();
 /* ═══════════════ NAVIGATION ═══════════════ */
 var currentNorm="";
 var _prevNorm="";
+function showTeleChoice(){
+  document.getElementById("screen-select").style.display="none";
+  document.getElementById("screen-tele-choice").classList.remove("section-hidden");
+}
+function backToHome(){
+  document.getElementById("screen-tele-choice").classList.add("section-hidden");
+  document.getElementById("screen-select").style.display="block";
+}
 function showNorm(n){
   currentNorm=n;
   document.getElementById("screen-select").style.display="none";
+  document.getElementById("screen-tele-choice").classList.add("section-hidden");
   document.getElementById("screen-drecp").classList.add("section-hidden");
   document.getElementById("screen-615").classList.add("section-hidden");
   document.getElementById("screen-pec").classList.add("section-hidden");
@@ -769,6 +823,7 @@ function retourNorm(){
 }
 function goHome(){
   document.getElementById("screen-select").style.display="block";
+  document.getElementById("screen-tele-choice").classList.add("section-hidden");
   document.getElementById("screen-drecp").classList.add("section-hidden");
   document.getElementById("screen-615").classList.add("section-hidden");
   document.getElementById("screen-pec").classList.add("section-hidden");
@@ -3189,6 +3244,7 @@ function renderTopDeb(csv){
   for(var j=0;j<rows.length;j++)rows[j]._tele=_findTele(rows[j].nom);
   _topDebRows=rows;
   renderTopDebTable(rows);
+  _fireConfetti();
 }
 /* ── Mutuelles récemment passées en dématérialisé (à mettre à jour au fil de l'eau) ── */
 var NEW_TELE_NAMES=[
@@ -3264,6 +3320,25 @@ function shareTopDebByMail(pct,volTele,total,normLabel,rows,norm){
   window.location.href='mailto:?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
 }
 
+function _fireConfetti(){
+  var colors=['#1a7a45','#7cadd6','#f08068','#f4d03f','#9b59b6','#e74c3c'];
+  var wrap=document.createElement('div');
+  wrap.style.cssText='position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden';
+  for(var i=0;i<70;i++){
+    var el=document.createElement('div');
+    var w=(Math.random()*6+5);
+    var h=w*(Math.random()*0.5+0.4);
+    var left=Math.random()*100;
+    var delay=(Math.random()*0.35).toFixed(2);
+    var dur=(Math.random()*1.6+1.9).toFixed(2);
+    var color=colors[Math.floor(Math.random()*colors.length)];
+    var rot=Math.round(Math.random()*360);
+    el.style.cssText='position:absolute;top:-24px;left:'+left+'%;width:'+w+'px;height:'+h+'px;background:'+color+';opacity:.92;border-radius:1px;transform:rotate('+rot+'deg);animation:confettiFall '+dur+'s ease-in '+delay+'s forwards';
+    wrap.appendChild(el);
+  }
+  document.body.appendChild(wrap);
+  setTimeout(function(){wrap.remove();},3400);
+}
 function renderTopDebTable(rows){
   var norm=_topDebNorm;
   var total=rows.reduce(function(s,r){return s+r.vol;},0);
@@ -3332,7 +3407,7 @@ function renderTopDebTable(rows){
       +' &mdash; pensez &agrave; mettre &agrave; jour votre param&eacute;trage !'
       +'</div>':'')
     /* Disclaimer */
-    +'<div style="font-size:11px;background:var(--tag-warn-bg);color:var(--tag-warn);border:1px solid var(--tag-warn);border-radius:6px;padding:.4rem .7rem;margin-bottom:.6rem">&#9432; <strong>Simulateur &mdash; donn&eacute;es indicatives.</strong> Ce pourcentage refl&egrave;te vos habitudes PEC des 3 derniers mois. Il ne constitue pas une garantie de couverture exacte.</div>'
+    +'<div style="font-size:11px;background:var(--tag-warn-bg);color:var(--tag-warn);border:1px solid var(--tag-warn);border-radius:6px;padding:.5rem .8rem;margin-bottom:.6rem;line-height:1.5"><strong>&#128200; Ceci est une fourchette basse.</strong> Ce calcul ne porte que sur vos <strong>PEC de séjour</strong> (ce sont les seules données d\'habitude dont nous disposons). Vos <strong>soins externes</strong> sont eux aussi télétransmissibles, mais ne nécessitent pas de demande de PEC — ils ne sont donc pas comptés ici. Le pourcentage réel de votre volume télétransmissible est probablement <strong>bien supérieur</strong> à ce chiffre.</div>'
     +'</div>'
     /* Boutons export */
     +'<div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:.6rem">'
